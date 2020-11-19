@@ -312,6 +312,20 @@ button{
     font-size: 1.5em;
 
 }
+#finalChoice{
+    
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin:0 auto;
+    bottom: 10vh;
+    padding-top: 10vh;
+    width: 100vw;
+    position: absolute;
+
+}
 
 #rightBtn {
     grid-area: 1 / 5 / 2 / 6;
