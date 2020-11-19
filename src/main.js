@@ -279,10 +279,12 @@ blue.addEventListener("click", function () {
       }
     qsContent.innerHTML = blueArr[index];
     //change button bg color 
-    for (let i = 0; i < buttonBg.length; i++) {
-        buttonBg[i].style.color = "#4da7db";
+    questions.style.backgroundColor="#4da7db";
+    qsContent.style.color="black";
+    // for (let i = 0; i < buttonBg.length; i++) {
+    //     buttonBg[i].style.color = "#4da7db";
 
-    }
+    // }
     disableBtn(blue);
 
 })
@@ -302,11 +304,13 @@ red.addEventListener("click", function () {
         circle.style.opacity=1;
         console.log(circle);
       }
-    redList.innerHTML = ""
-    for (let i = 0; i < buttonBg.length; i++) {
-        buttonBg[i].style.color = "#ef4747";
+    redList.innerHTML = "";
+    questions.style.backgroundColor="#ef4747";
+    qsContent.style.color="black";
+    // for (let i = 0; i < buttonBg.length; i++) {
+    //     buttonBg[i].style.color = "#ef4747";
 
-    }
+    // }
 
     disableBtn(red);
 
@@ -325,13 +329,8 @@ white.addEventListener("click", function () {
       }
     qsContent.innerHTML = whiteArr[index];
     whiteList.innerHTML = ""
-
-    for (let i = 0; i < buttonBg.length; i++) {
-        buttonBg[i].style.color = "#e6e6e6";
-
-    }
-
-
+    questions.style.backgroundColor="#e6e6e6";
+    qsContent.style.color="black";
     disableBtn(white);
 
 })
@@ -350,11 +349,12 @@ green.addEventListener("click", function () {
       }
     qsContent.innerHTML = redArr[index];
 
+    questions.style.backgroundColor="#5acfc7";
+    qsContent.style.color="black";
+    // for (let i = 0; i < buttonBg.length; i++) {
+    //     buttonBg[i].style.color = "#5acfc7";
 
-    for (let i = 0; i < buttonBg.length; i++) {
-        buttonBg[i].style.color = "#5acfc7";
-
-    }
+    // }
     disableBtn(green);
 
 })
