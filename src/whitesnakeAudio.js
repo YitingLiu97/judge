@@ -71,7 +71,7 @@ let jsonAudioOBJ={
     "Green": [
        {
           "Question": "What’s your relationship with Miss White?",
-          "Answer": "We are sister-like friends. If it weren't for Miss White,I wouldn't become who I am today.",
+          "Answer": "We are sister-like friends. If it weren't for Miss White, I wouldn't become who I am today.",
           "Audio": "Assets/Green0.mp3"
        },
        {
