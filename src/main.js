@@ -468,11 +468,12 @@ let intro = document.getElementById("intro");
 let next = document.getElementById("next");
 //the game
 let mid = document.getElementById("mid");
+
 next.addEventListener("click", function () {
     mid.style.display = "flex";
     intro.style.display = "none";
     bgAnim.style.display = "none";
-    let crowdAudio =document.getElementById("crowdAudio");
+ 
     crowdAudio.pause();
 
 })
@@ -728,6 +729,8 @@ function showCollections(colPopUp, colClose, colList, colorQs, colorAns) {
 
 //should set the audio outside, otherwise it will be created everytime you run the function 
 let audio = document.createElement("audio");
+
+
 //pause audio when it goes to another index/click 
 function playAudios(audioArrays, index) {
 
