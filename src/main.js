@@ -469,9 +469,10 @@ let next = document.getElementById("next");
 //the game
 let mid = document.getElementById("mid");
 
-// window.onload = function() {
-//     crowdAudio.play();
-// }
+let crowdAudio=document.getElementById("crowdAudio")
+window.onload = function() {
+    crowdAudio.play();
+}
 next.addEventListener("click", function () {
     mid.style.display = "flex";
     intro.style.display = "none";
