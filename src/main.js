@@ -470,9 +470,9 @@ let next = document.getElementById("next");
 let mid = document.getElementById("mid");
 
 let crowdAudio=document.getElementById("crowdAudio")
-window.onload = function() {
-    crowdAudio.play();
-}
+// window.onload = function() {
+//     crowdAudio.play();
+// }
 next.addEventListener("click", function () {
     mid.style.display = "flex";
     intro.style.display = "none";
