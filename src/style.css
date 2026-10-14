@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-
+    box-sizing: border-box;
 }
 
 body,
@@ -171,7 +171,7 @@ ul{
 
 }
 
-.ball>div {
+.ball>button {
     margin: 0 auto;
     width: 100px;
     height: 100px;
@@ -180,6 +180,7 @@ ul{
     box-shadow: 5px 5px 64px #3c82aa,
         -5px -5px 64px #6ff1ff;
     font-size: 1.2em;
+    cursor: pointer;
 
 }
 
@@ -271,6 +272,12 @@ button{
     background-color:transparent;
     border: none;
     color: lightgray;
+    cursor: pointer;
+}
+
+button:focus-visible, a:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 5px;
 }
 #circles{
     position: absolute;
@@ -448,4 +455,155 @@ a{
     80% { transform: translate(-3px, -1px) rotate(1deg); }
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@media (max-width: 700px) {
+    html, body {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    body { font-size: 16px; }
+    p { font-size: 1rem; }
+    h1 { font-size: clamp(1.3rem, 5vw, 1.7rem); line-height: 1.3; }
+    h2 { font-size: 1.5rem; }
+
+    #bgAnim {
+        width: 100%;
+        height: 100svh;
+        overflow: hidden;
+    }
+
+    #intro {
+        position: relative;
+        min-height: 100svh;
+        height: auto;
+        width: 100%;
+        padding: clamp(2rem, 8vh, 4rem) 1.25rem 1.25rem;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    #intro > div { width: min(100%, 38rem); padding: 0; }
+    #intro br { display: none; }
+    #intro h1 { margin: 0 0 1.25rem; }
+    #instruction { font-size: 1rem; }
+    #next {
+        width: auto;
+        min-height: 48px;
+        padding: .75rem 1.25rem;
+        font-size: 1rem;
+    }
+    #credit {
+        position: static;
+        width: 100%;
+        margin-top: 1rem;
+        font-size: .78rem;
+        line-height: 1.5;
+    }
+
+    .biggerWrapper, #mid {
+        position: relative;
+        width: 100%;
+        min-height: 100svh;
+        height: auto;
+        padding: 2rem 1rem 3rem;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        gap: 1.5rem;
+    }
+
+    .wrapper {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem .75rem;
+    }
+
+    .ball {
+        width: 100%;
+        height: auto;
+        min-height: 9rem;
+        justify-content: flex-start;
+        gap: .5rem;
+    }
+
+    .ball > button { width: 72px; height: 72px; }
+    .ball > p { line-height: 1.25; }
+    .shortintro { font-size: .85rem; }
+
+    #questionsButtons {
+        width: 100%;
+        height: auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto auto;
+        border: 1px solid #555;
+    }
+    #questions { grid-area: 1 / 1 / 2 / 3; }
+    #qsContent {
+        min-height: 7rem;
+        height: auto;
+        padding: 1rem;
+        font-size: 1rem;
+        line-height: 1.35;
+    }
+    #leftBtn, #rightBtn {
+        min-height: 48px;
+        font-size: 1rem;
+        border-top: 1px solid #555;
+    }
+    #leftBtn { grid-area: 2 / 1 / 3 / 2; }
+    #rightBtn { grid-area: 2 / 2 / 3 / 3; }
+
+    #answers {
+        width: 100%;
+        min-height: 6rem;
+        height: auto;
+        padding: .5rem;
+    }
+    #answers p { font-size: 1rem; line-height: 1.45; }
+    #score { width: 100%; height: auto; }
+    #circles { position: static; width: 100%; }
+    #circles > div { margin: 0 .65rem; }
+    #ready, #gotoMid, #wait, #gentle, #blunt, #gotoEnd, #gotoStart {
+        min-height: 44px;
+        padding: .65rem 1rem;
+        font-size: 1rem;
+    }
+
+    .pop-up {
+        position: fixed;
+        inset: 5svh 5vw;
+        width: auto;
+        height: auto;
+        padding: 3rem 1rem 1rem;
+        overflow-y: auto;
+        justify-content: flex-start;
+        z-index: 20;
+    }
+    .pop-up ul { width: 100%; text-align: left; }
+    .pop-up li { padding: .5rem 0; }
+    .pop-up li h2 { font-size: 1.1rem !important; }
+    .pop-up li p { font-size: .95rem !important; line-height: 1.4; }
+    .close { padding: .25rem .75rem; cursor: pointer; }
+
+    #end { display: block; }
+    #end[style*="display:none"], #end[style*="display: none"] { display: none; }
+    #end > h1 { margin: 0 0 1.5rem; }
+    #twoballs { height: auto !important; margin: 1.5rem 0; }
+    #resultforWhite, #resultforRed, #resultforBlue { margin: 1rem 0; }
+    #resultforWhite h1, #resultforRed h1, #resultforBlue h1 { font-size: 1.35rem; }
+    #finalChoice {
+        position: static;
+        width: 100%;
+        padding: 1.5rem 0;
+        gap: .75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }

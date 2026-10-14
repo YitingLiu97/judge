@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=p, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>White Snake</title>
     <link rel="stylesheet" href="src/style.css">
     <link href="assets/favicon.ico" rel="icon" type="image/x-icon" />
@@ -13,7 +13,6 @@
         rel="stylesheet">
 
         <!-- utf-8 universal character set - otherwise webpage will be messed up -->
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Yiting Liu">
         <meta name="description" content="A non-linear immersive web experience adapted from a Chinese myth.
 
@@ -65,7 +64,7 @@ feedbacks
     <div id="intro" >
 
         <!-- <iframe id="crowdAudio" autoplay="auto"src="/assets/crowd_flooding.mp3" frameborder=""></iframe> -->
-        <audio controls autoplay loop id="crowdAudio" style="display: none;" src="https://whitesnake.netlify.app/assets/crowd_flooding.mp3"></audio>
+        <audio controls autoplay loop id="crowdAudio" style="display: none;" src="assets/crowd_flooding.mp3"></audio>
   
         <div >
             <h1>It was reported that the innocent creatures in the Golden Temple were killed by an unnatural flood,
@@ -99,25 +98,25 @@ feedbacks
             <div class="wrapper">
                 <!-- <p>browser focused white snake story</p> -->
                 <div class="ball">
-                    <div id="blue"></div>
+                    <button type="button" id="blue" aria-label="Hear Xu Xian's testimony"></button>
                     <p id="blueChar">Xu Xian</p>
                     <p class="shortintro">The man who died once.</p>
                     <!-- add one line for each characters experience  -->
                 </div>
                 <div class="ball">
-                    <div id="white"></div>
+                    <button type="button" id="white" aria-label="Hear Miss White's testimony"></button>
                     <p id="whiteChar">Miss White</p>
                     <p class="shortintro">The white snake in human form. </p>
 
                 </div>
                 <div class="ball">
-                    <div id="green"></div>
+                    <button type="button" id="green" aria-label="Hear Miss Teal's testimony"></button>
                     <p id="greenChar">Miss Teal</p>
                     <p class="shortintro">The green snake in human form.</p>
 
                 </div>
                 <div class="ball">
-                    <div id="red"></div>
+                    <button type="button" id="red" aria-label="Hear the Monk's testimony"></button>
                     <p id="redChar">The Monk</p>
                     <p class="shortintro">The turtle in human form. </p>
 
@@ -210,12 +209,12 @@ feedbacks
             <div id="twoballs" class="wrapper" style="height:40vh">
 
                 <div class="ball">
-                    <div id="whiteBtn"></div>
+                    <button type="button" id="whiteBtn" aria-label="Judge Miss White guilty"></button>
                     <p id="whiteBtnChar">Miss White</p>
                 </div>
 
                 <div class="ball">
-                    <div id="redBtn"></div>
+                    <button type="button" id="redBtn" aria-label="Judge the Monk guilty"></button>
                     <p id="redBtnChar">The Monk</p>
                 </div>
 
