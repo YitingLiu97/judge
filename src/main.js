@@ -145,37 +145,11 @@ qsContent.innerHTML = "Click on one character to listen to their tesimonies";
 //why do you have to click the right button and then select the question to make sure they appear in order? 
 
 function showRQs(questionsArray) {
-    console.log(state);
-       
     index++;
     if (index > questionsArray.length - 1) {
         index = 0;
     }
-
-
-    if (state == "blue") {
-        blueColQs.push(questionsArray[index]);
-        console.log("blueColQs",blueColQs)
-
-    }
-    if (state == "red") {
-        redColQs.push(questionsArray[index]);
-    }
-    if (state == "white") {
-        whiteColQs.push(questionsArray[index]);
-        console.log(qsContent.innerHTML, "qscontent")
-
-    }
-    if (state == "green") {
-        greenColQs.push(questionsArray[index]);
-
-    }
-  //avoid undefined  
- 
-  qsContent.innerHTML = questionsArray[index];
-
-
-  
+    qsContent.textContent = questionsArray[index];
 }
 
 //when i click the charatcer name, should show the corresponding lists 
@@ -186,19 +160,7 @@ function showLQs(questionsArray) {
         index = questionsArray.length - 1;
     }
 
-    if (state == "blue") {
-        blueColQs.push(questionsArray[index]);
-    }
-    if (state == "red") {
-        redColQs.push(questionsArray[index]);
-    }
-    if (state == "white") {
-        whiteColQs.push(questionsArray[index]);
-    }
-    if (state == "green") {
-        greenColQs.push(questionsArray[index]);
-    }
-    qsContent.innerHTML = questionsArray[index];
+    qsContent.textContent = questionsArray[index];
 
     console.log(questionsArray.length)
     console.log("left click ", index);
@@ -271,6 +233,7 @@ blue.addEventListener("click", function () {
     index = 0;
     state = "blue";
     counter = 0;
+    scoreContent.textContent = "0/4";
     blueList.innerHTML = ""
     for (const circle of circles) {
 
@@ -298,6 +261,7 @@ red.addEventListener("click", function () {
     index = 0;
     state = "red";
     counter = 0;
+    scoreContent.textContent = "0/4";
     qsContent.innerHTML = redArr[index];
     for (const circle of circles) {
 
@@ -322,6 +286,7 @@ white.addEventListener("click", function () {
     index = 0;
     state = "white";
     counter = 0;
+    scoreContent.textContent = "0/4";
     for (const circle of circles) {
 
         circle.style.opacity=1;
@@ -342,12 +307,13 @@ green.addEventListener("click", function () {
     greenList.innerHTML = ""
     state = "green";
     counter = 0;
+    scoreContent.textContent = "0/4";
     for (const circle of circles) {
 
         circle.style.opacity=1;
         console.log(circle);
       }
-    qsContent.innerHTML = redArr[index];
+    qsContent.innerHTML = greenArr[index];
 
     questions.style.backgroundColor="#5acfc7";
     qsContent.style.color="black";
@@ -642,67 +608,36 @@ let blinkText;
 
 // still counter is not fixed I guess 
 function showAnswers(answerArrays, index, col, char) {
-    //index situatuion FIXED - 11/15
-    let lastIndex = 0;
-    if (lastIndex != index) {
-        counter++;
-    }
+    const collections = answerArrays === blueAnswerArr ? [blueArr, blueColQs, blueColAns]
+        : answerArrays === whiteAnswerArr ? [whiteArr, whiteColQs, whiteColAns]
+        : answerArrays === greenAnswerArr ? [greenArr, greenColQs, greenColAns]
+        : [redArr, redColQs, redColAns];
+    const [questionsArray, collectedQuestions, collectedAnswers] = collections;
+    const question = questionsArray[index];
+    const answer = answerArrays[index];
 
-    if (counter > 3) {
-        anContent.innerHTML= "It's time to move on to the next candidate."
-        //dim the light 
+    anContent.textContent = answer;
+    if (collectedQuestions.includes(question)) return;
+
+    collectedQuestions.push(question);
+    collectedAnswers.push(answer);
+    counter = collectedQuestions.length;
+    scoreContent.textContent = `${counter}/4`;
+    circles[counter - 1].style.opacity = 0.2;
+
+    if (counter === 4) {
         col.style.opacity = 0.2;
         blink(char);
         state = "done";
-        if (state == "done") {
-            stateCounter++;
-        }
-        console.log(stateCounter, 'stateCounter');
-        return stateCounter;
-
-    } else {
-        anContent.innerHTML = answerArrays[index];
-        // console.log("counter less than 4")
-        console.log("index in answers", index)
-        lastIndex = index;
-        scoreContent.textContent = `${(counter+1)}/4`;
-
-        // colAns.push(answerArrays[index]);
-      
-      circle  = circles[counter];
-        circle.style.opacity = 0.2;
-        console.log("circles", circles)
-
-
-        if (answerArrays = whiteAnswerArr) {
-            whiteColAns.push(answerArrays[index]);
-
-        }
-        if (answerArrays = redAnswerArr) {
-            redColAns.push(answerArrays[index]);
-
-        }
-        if (answerArrays = greenAnswerArr) {
-            greenColAns.push(answerArrays[index]);
-
-        }
-        if (answerArrays = blueAnswerArr) {
-            blueColAns.push(answerArrays[index]);
-
-        }
-
+        stateCounter++;
     }
-    console.log("answers", anContent.innerHTML);
-    // console.log("whitecolsAns", whiteColAns);
-
-
 }
 
 //popup finished on 11/16 
 function showCollections(colPopUp, colClose, colList, colorQs, colorAns) {
     colList.innerHTML = "";
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < colorAns.length; i++) {
 
         let colQsText = document.createElement("h2");
         colQsText.innerHTML = colorQs[i];
@@ -738,7 +673,7 @@ let audio = document.createElement("audio");
 //pause audio when it goes to another index/click 
 function playAudios(audioArrays, index) {
 
-    let audioURL = `../${audioArrays[index]}`;
+    let audioURL = audioArrays[index];
 
     audio.src = audioURL;
     if (audio.paused || !audio.played) {
@@ -770,4 +705,4 @@ let animation = bodymovin.loadAnimation({
 //add audio - Yiting - tbf
 //dim the light - Yiting - DONE - 11/15 
 //voting part - two buttons - show up different result - Yiting - DONE - 11/15 
-//intro - Wen - Yiting - Done - 11/15 
+//intro - Wen - Yiting - Done - 11/15
